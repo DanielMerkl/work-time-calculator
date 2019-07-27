@@ -1,7 +1,8 @@
 import React, { FC } from "react";
+import ApplicationBar from "./components/ApplicationBar";
 
 const App: FC = () => {
-  return <div>cleanup</div>;
+  return <ApplicationBar />;
 };
 
 export default App;
