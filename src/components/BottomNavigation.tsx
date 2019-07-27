@@ -17,7 +17,6 @@ const BottomNavigation: FC = () => {
       value={navIndex}
       onChange={(e, newNavIndex) => setNavIndex(newNavIndex)}
       showLabels
-      style={{}}
     >
       <BottomNavigationAction label="Rechner" icon={<Alarm />} />
       <BottomNavigationAction label="Einstellungen" icon={<Settings />} />
