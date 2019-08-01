@@ -8,14 +8,14 @@ interface Props {
   calculationTarget: CalculationTarget;
 }
 
-const ResultDisplay: FC<Props> = props => (
-  <div style={{ margin: 16 }}>
+const ResultDisplay: FC<Props> = ({ inputValues, calculationTarget }) => (
+  <div style={{ margin: "32px 16px" }}>
     <Paper style={{ maxWidth: 800, padding: 16, margin: "auto" }}>
       <Typography variant="h6" align="center" gutterBottom>
-        {toGerman(props.calculationTarget)}
+        {toGerman(calculationTarget)}
       </Typography>
-      <Typography variant="h3" align="center">
-        {getCorrectValue(props.inputValues, props.calculationTarget)}
+      <Typography variant="h3" align="center" gutterBottom>
+        {getCorrectValue(inputValues, calculationTarget)}
       </Typography>
     </Paper>
   </div>
@@ -37,17 +37,21 @@ const toGerman = (calculationTarget: CalculationTarget): string => {
 };
 
 const getCorrectValue = (
-  inputValues: InputValues,
+  { breakTime, endOfWork, startOfWork, workTime }: InputValues,
   calculationTarget: CalculationTarget
 ) => {
   switch (calculationTarget) {
     case CalculationTarget.StartOfWork:
-      return inputValues.startOfWork.format("HH:mm");
+      return startOfWork !== null && startOfWork.isValid()
+        ? startOfWork.format("HH:mm")
+        : "-";
     case CalculationTarget.EndOfWork:
-      return inputValues.endOfWork.format("HH:mm");
+      return endOfWork !== null && endOfWork.isValid()
+        ? endOfWork.format("HH:mm")
+        : "-";
     case CalculationTarget.BreakTime:
-      return inputValues.breakTime;
+      return breakTime;
     case CalculationTarget.WorkTime:
-      return inputValues.workTime;
+      return workTime;
   }
 };
