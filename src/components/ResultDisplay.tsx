@@ -14,7 +14,7 @@ const ResultDisplay: FC<Props> = ({ inputValues, calculationTarget }) => (
       <Typography variant="h6" align="center" gutterBottom>
         {toGerman(calculationTarget)}
       </Typography>
-      <Typography variant="h3" align="center" gutterBottom>
+      <Typography variant="h3" align="center" gutterBottom noWrap>
         {getCorrectValue(inputValues, calculationTarget)}
       </Typography>
     </Paper>

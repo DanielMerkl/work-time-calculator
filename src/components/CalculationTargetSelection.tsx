@@ -56,6 +56,11 @@ const useStyles = makeStyles({
     display: "grid",
     gridGap: 8,
     gridTemplateColumns: "repeat(4, 1fr)"
+  },
+  "@media (max-width: 600px)": {
+    gridWrapper: {
+      gridTemplateColumns: "1fr 1fr"
+    }
   }
 });
 
