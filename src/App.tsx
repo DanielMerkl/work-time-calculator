@@ -6,10 +6,13 @@ import CalculationPage from "./pages/CalculationPage";
 import SettingsPage from "./pages/SettingsPage";
 import AuthPage from "./pages/AuthPage";
 import routes from "./utils/routes";
+import { makeStyles } from "@material-ui/styles";
 
 const App: FC = () => {
+  const classes = useStyles();
+
   return (
-    <>
+    <div className={classes.gridWrapper}>
       <ApplicationBar />
       <Switch>
         <Route path={routes.calculation} exact component={CalculationPage} />
@@ -18,8 +21,16 @@ const App: FC = () => {
         <Redirect to={routes.calculation} />
       </Switch>
       <BottomNavigation />
-    </>
+    </div>
   );
 };
+
+const useStyles = makeStyles({
+  gridWrapper: {
+    height: "100vh",
+    display: "grid",
+    gridTemplateRows: "48px 1fr 56px"
+  }
+});
 
 export default App;

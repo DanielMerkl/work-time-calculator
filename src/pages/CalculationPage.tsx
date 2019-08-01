@@ -38,7 +38,7 @@ const CalculationPage: FC = () => {
   };
 
   return (
-    <>
+    <div>
       <ResultDisplay
         inputValues={inputValues}
         calculationTarget={calculationTarget}
@@ -52,7 +52,7 @@ const CalculationPage: FC = () => {
         calculationTarget={calculationTarget}
         onCalculationTargetChange={setCalculationTarget}
       />
-    </>
+    </div>
   );
 };
 
