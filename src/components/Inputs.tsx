@@ -6,13 +6,19 @@ import {
 } from "@material-ui/pickers";
 import { makeStyles, TextField } from "@material-ui/core";
 import moment from "moment";
+import { CalculationTarget } from "../types/enum/CalculationTarget";
 
 interface Props {
   inputValues: InputValues;
+  calculationTarget: CalculationTarget;
   onInputValuesChange: (updatedInputValues: InputValues) => void;
 }
 
-const Inputs: FC<Props> = ({ inputValues, onInputValuesChange }) => {
+const Inputs: FC<Props> = ({
+  inputValues,
+  calculationTarget,
+  onInputValuesChange
+}) => {
   const classes = useStyles();
 
   const handleStartOfWorkChange = (newValue: MaterialUiPickersDate) => {
@@ -50,6 +56,7 @@ const Inputs: FC<Props> = ({ inputValues, onInputValuesChange }) => {
           label="Arbeitsbeginn"
           value={inputValues.startOfWork}
           onChange={handleStartOfWorkChange}
+          disabled={calculationTarget === CalculationTarget.StartOfWork}
         />
         <KeyboardTimePicker
           ampm={false}
@@ -58,6 +65,7 @@ const Inputs: FC<Props> = ({ inputValues, onInputValuesChange }) => {
           label="Arbeitsende"
           value={inputValues.endOfWork}
           onChange={handleEndOfWorkChange}
+          disabled={calculationTarget === CalculationTarget.EndOfWork}
         />
         <TextField
           type="number"
@@ -65,6 +73,7 @@ const Inputs: FC<Props> = ({ inputValues, onInputValuesChange }) => {
           variant="outlined"
           value={inputValues.breakTime}
           onChange={handleBreakTimeChange}
+          disabled={calculationTarget === CalculationTarget.BreakTime}
         />
         <TextField
           type="number"
@@ -73,6 +82,7 @@ const Inputs: FC<Props> = ({ inputValues, onInputValuesChange }) => {
           value={inputValues.workTime}
           onChange={handleWorkTimeChange}
           inputProps={{ step: 0.1 }}
+          disabled={calculationTarget === CalculationTarget.WorkTime}
         />
       </div>
     </div>
