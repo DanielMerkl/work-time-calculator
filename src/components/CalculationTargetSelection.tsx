@@ -8,10 +8,8 @@ interface Props {
   onCalculationTargetChange: (newCalculationTarget: CalculationTarget) => void;
 }
 
-const CalculationTargetSelection: FC<Props> = ({
-  calculationTarget,
-  onCalculationTargetChange
-}) => {
+const CalculationTargetSelection: FC<Props> = React.memo(props => {
+  const { calculationTarget, onCalculationTargetChange } = props;
   const classes = useStyles();
   const { BreakTime, StartOfWork, WorkTime, EndOfWork } = CalculationTarget;
 
@@ -49,7 +47,7 @@ const CalculationTargetSelection: FC<Props> = ({
       </div>
     </div>
   );
-};
+});
 
 const useStyles = makeStyles({
   gridWrapper: {

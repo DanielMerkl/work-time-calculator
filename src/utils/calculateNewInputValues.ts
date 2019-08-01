@@ -1,4 +1,3 @@
-import moment from "moment";
 import { InputValues } from "../types/interface/InputValues";
 import { CalculationTarget } from "../types/enum/CalculationTarget";
 
@@ -25,15 +24,17 @@ export const calculateNewInputValues = (
       return { ...currentInputValues, endOfWork: updatedEndOfWork };
 
     case CalculationTarget.BreakTime:
-      const updatedBreakTime =
-        startOfWork.diff(endOfWork, "minutes") -
-        moment.duration(workTime, "hours").asMinutes();
+      const updatedBreakTime = endOfWork
+        .clone()
+        .subtract(workTime, "hours")
+        .diff(startOfWork, "minutes");
       return { ...currentInputValues, breakTime: updatedBreakTime };
 
     case CalculationTarget.WorkTime:
-      const updatedWorkTime = moment
-        .duration(startOfWork.diff(endOfWork, "minutes") - breakTime, "minutes")
-        .asHours();
+      const updatedWorkTime = endOfWork
+        .clone()
+        .subtract(breakTime, "minutes")
+        .diff(startOfWork, "hours", true);
       return { ...currentInputValues, workTime: updatedWorkTime };
   }
 };

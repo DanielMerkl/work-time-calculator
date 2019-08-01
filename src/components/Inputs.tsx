@@ -14,11 +14,9 @@ interface Props {
   onInputValuesChange: (updatedInputValues: InputValues) => void;
 }
 
-const Inputs: FC<Props> = ({
-  inputValues,
-  calculationTarget,
-  onInputValuesChange
-}) => {
+const Inputs: FC<Props> = props => {
+  const { inputValues, calculationTarget, onInputValuesChange } = props;
+  const { breakTime, workTime, startOfWork, endOfWork } = inputValues;
   const classes = useStyles();
 
   const handleStartOfWorkChange = (newValue: MaterialUiPickersDate) => {
@@ -54,7 +52,7 @@ const Inputs: FC<Props> = ({
           invalidDateMessage="Ungültige Eingabe"
           inputVariant="outlined"
           label="Arbeitsbeginn"
-          value={inputValues.startOfWork}
+          value={startOfWork}
           onChange={handleStartOfWorkChange}
           disabled={calculationTarget === CalculationTarget.StartOfWork}
         />
@@ -63,7 +61,7 @@ const Inputs: FC<Props> = ({
           invalidDateMessage="Ungültige Eingabe"
           inputVariant="outlined"
           label="Arbeitsende"
-          value={inputValues.endOfWork}
+          value={endOfWork}
           onChange={handleEndOfWorkChange}
           disabled={calculationTarget === CalculationTarget.EndOfWork}
         />
@@ -71,18 +69,20 @@ const Inputs: FC<Props> = ({
           type="number"
           label="Pausezeit"
           variant="outlined"
-          value={inputValues.breakTime}
+          value={breakTime}
           onChange={handleBreakTimeChange}
           disabled={calculationTarget === CalculationTarget.BreakTime}
+          error={breakTime < 0}
         />
         <TextField
           type="number"
           label="Arbeitszeit"
           variant="outlined"
-          value={inputValues.workTime}
+          value={workTime.toFixed(2)}
           onChange={handleWorkTimeChange}
           inputProps={{ step: 0.1 }}
           disabled={calculationTarget === CalculationTarget.WorkTime}
+          error={workTime < 0}
         />
       </div>
     </div>
