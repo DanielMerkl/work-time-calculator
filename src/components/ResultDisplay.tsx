@@ -43,15 +43,15 @@ const getCorrectValue = (
   switch (calculationTarget) {
     case CalculationTarget.StartOfWork:
       return startOfWork !== null && startOfWork.isValid()
-        ? startOfWork.format("HH:mm")
+        ? `${startOfWork.format("HH:mm")} Uhr`
         : "-";
     case CalculationTarget.EndOfWork:
       return endOfWork !== null && endOfWork.isValid()
-        ? endOfWork.format("HH:mm")
+        ? `${endOfWork.format("HH:mm")} Uhr`
         : "-";
     case CalculationTarget.BreakTime:
-      return breakTime;
+      return `${breakTime} Minuten`;
     case CalculationTarget.WorkTime:
-      return workTime;
+      return `${workTime.toLocaleString("de")} Stunden`;
   }
 };
