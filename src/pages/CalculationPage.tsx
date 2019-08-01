@@ -1,12 +1,14 @@
 import React, { FC, useReducer } from "react";
 import ResultDisplay from "../components/ResultDisplay";
-import { CurrentInputValues } from "../types/interface/CurrentInputValues";
 import { CalculationTarget } from "../types/enum/CalculationTarget";
-import { calculationReducer } from "../utils/reducer/calculationReducer";
+import {
+  calculationReducer,
+  CalculationState
+} from "../utils/reducer/calculationReducer";
 import moment from "moment";
 
 const initialState: CalculationState = {
-  currentInputValues: {
+  inputValues: {
     startOfWork: moment("08:00", "HH:mm"),
     endOfWork: moment("16:00", "HH:mm"),
     breakTime: 30,
@@ -21,7 +23,7 @@ const CalculationPage: FC = () => {
   return (
     <>
       <ResultDisplay
-        currentInputValues={state.currentInputValues}
+        inputValues={state.inputValues}
         calculationTarget={state.calculationTarget}
       />
     </>
@@ -29,8 +31,3 @@ const CalculationPage: FC = () => {
 };
 
 export default CalculationPage;
-
-interface CalculationState {
-  currentInputValues: CurrentInputValues;
-  calculationTarget: CalculationTarget;
-}

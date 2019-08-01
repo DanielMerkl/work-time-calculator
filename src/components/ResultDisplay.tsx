@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { CalculationTarget } from "../types/enum/CalculationTarget";
-import { CurrentInputValues } from "../types/interface/CurrentInputValues";
+import { InputValues } from "../types/interface/InputValues";
 import { Paper, Typography } from "@material-ui/core";
 
 interface Props {
-  currentInputValues: CurrentInputValues;
+  inputValues: InputValues;
   calculationTarget: CalculationTarget;
 }
 
@@ -15,7 +15,7 @@ const ResultDisplay: FC<Props> = props => (
         {toGerman(props.calculationTarget)}
       </Typography>
       <Typography variant="h3" align="center">
-        {getCorrectValue(props.currentInputValues, props.calculationTarget)}
+        {getCorrectValue(props.inputValues, props.calculationTarget)}
       </Typography>
     </Paper>
   </div>
@@ -37,17 +37,17 @@ const toGerman = (calculationTarget: CalculationTarget): string => {
 };
 
 const getCorrectValue = (
-  currentInputValues: CurrentInputValues,
+  inputValues: InputValues,
   calculationTarget: CalculationTarget
 ) => {
   switch (calculationTarget) {
     case CalculationTarget.StartOfWork:
-      return currentInputValues.startOfWork.format("HH:mm");
+      return inputValues.startOfWork.format("HH:mm");
     case CalculationTarget.EndOfWork:
-      return currentInputValues.endOfWork.format("HH:mm");
+      return inputValues.endOfWork.format("HH:mm");
     case CalculationTarget.BreakTime:
-      return currentInputValues.breakTime;
+      return inputValues.breakTime;
     case CalculationTarget.WorkTime:
-      return currentInputValues.workTime;
+      return inputValues.workTime;
   }
 };

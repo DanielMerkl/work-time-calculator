@@ -1,17 +1,17 @@
 import { Moment } from "moment";
 import { CalculationTarget } from "../../types/enum/CalculationTarget";
-import { CurrentInputValues } from "../../types/interface/CurrentInputValues";
+import { InputValues } from "../../types/interface/InputValues";
 import moment from "moment";
 
-interface CalculationState {
-  currentInputValues: CurrentInputValues;
+export interface CalculationState {
+  inputValues: InputValues;
   calculationTarget: CalculationTarget;
 }
 
 type CalculationActions =
   | {
       type: "changeInputValue";
-      key: keyof CurrentInputValues;
+      key: keyof InputValues;
       newValue: Moment | number;
     }
   | {
@@ -28,8 +28,8 @@ export const calculationReducer = (
     case "changeInputValue":
       return {
         ...state,
-        currentInputValues: {
-          ...state.currentInputValues,
+        inputValues: {
+          ...state.inputValues,
           [action.key]: action.newValue
         }
       };
@@ -38,8 +38,8 @@ export const calculationReducer = (
     case "calculateNewValues":
       return {
         ...state,
-        currentInputValues: calculateNewInputValues(
-          state.currentInputValues,
+        inputValues: calculateNewInputValues(
+          state.inputValues,
           state.calculationTarget
         )
       };
@@ -47,9 +47,9 @@ export const calculationReducer = (
 };
 
 const calculateNewInputValues = (
-  currentInputValues: CurrentInputValues,
+  currentInputValues: InputValues,
   calculationTarget: CalculationTarget
-): CurrentInputValues => {
+): InputValues => {
   const { startOfWork, endOfWork, breakTime, workTime } = currentInputValues;
 
   switch (calculationTarget) {
