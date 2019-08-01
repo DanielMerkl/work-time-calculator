@@ -6,6 +6,7 @@ import Inputs from "../components/Inputs";
 import { CalculationTarget } from "../types/enum/CalculationTarget";
 import { calculateNewInputValues } from "../utils/calculateNewInputValues";
 import { InputValues } from "../types/interface/InputValues";
+import CalculationTargetSelection from "../components/CalculationTargetSelection";
 
 const CalculationPage: FC = () => {
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -48,7 +49,12 @@ const CalculationPage: FC = () => {
       />
       <Inputs
         inputValues={inputValues}
+        calculationTarget={calculationTarget}
         onInputValuesChange={handleInputValuesChange}
+      />
+      <CalculationTargetSelection
+        calculationTarget={calculationTarget}
+        onCalculationTargetChange={setCalculationTarget}
       />
     </>
   );
