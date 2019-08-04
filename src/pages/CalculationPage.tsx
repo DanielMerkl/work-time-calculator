@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 import ResultDisplay from "../components/ResultDisplay";
 
-import moment from "moment";
 import Inputs from "../components/Inputs";
 import { CalculationTarget } from "../types/enum/CalculationTarget";
 import { calculateNewInputValues } from "../utils/calculateNewInputValues";
@@ -10,8 +9,8 @@ import CalculationTargetSelection from "../components/CalculationTargetSelection
 
 const CalculationPage: FC = () => {
   const [inputValues, setInputValues] = useState<InputValues>({
-    startOfWork: moment("08:00", "HH:mm"),
-    endOfWork: moment("16:00", "HH:mm"),
+    startOfWork: "08:00",
+    endOfWork: "16:00",
     breakTime: 30,
     workTime: 7.5
   });
@@ -20,11 +19,8 @@ const CalculationPage: FC = () => {
   );
 
   const handleInputValuesChange = (updatedInputValues: InputValues) => {
-    const dateInputsAreValid =
-      updatedInputValues.startOfWork !== null &&
-      updatedInputValues.startOfWork.isValid() &&
-      updatedInputValues.endOfWork !== null &&
-      updatedInputValues.endOfWork.isValid();
+    const { startOfWork, endOfWork } = updatedInputValues;
+    const dateInputsAreValid = !startOfWork && !endOfWork;
 
     if (dateInputsAreValid) {
       const newCalculatedValues = calculateNewInputValues(

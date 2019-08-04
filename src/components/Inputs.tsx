@@ -1,11 +1,6 @@
 import React, { ChangeEvent, FC } from "react";
 import { InputValues } from "../types/interface/InputValues";
-import {
-  KeyboardTimePicker,
-  MaterialUiPickersDate
-} from "@material-ui/pickers";
 import { makeStyles, TextField } from "@material-ui/core";
-import moment from "moment";
 import { CalculationTarget } from "../types/enum/CalculationTarget";
 
 interface Props {
@@ -19,17 +14,17 @@ const Inputs: FC<Props> = props => {
   const { breakTime, workTime, startOfWork, endOfWork } = inputValues;
   const classes = useStyles();
 
-  const handleStartOfWorkChange = (newValue: MaterialUiPickersDate) => {
+  const handleStartOfWorkChange = (newValue: ChangeEvent<HTMLInputElement>) => {
     onInputValuesChange({
       ...inputValues,
-      startOfWork: newValue !== null ? moment(newValue) : null
+      startOfWork: newValue.target.value
     });
   };
 
-  const handleEndOfWorkChange = (newValue: MaterialUiPickersDate) => {
+  const handleEndOfWorkChange = (newValue: ChangeEvent<HTMLInputElement>) => {
     onInputValuesChange({
       ...inputValues,
-      endOfWork: newValue !== null ? moment(newValue) : null
+      endOfWork: newValue.target.value
     });
   };
 
@@ -46,24 +41,21 @@ const Inputs: FC<Props> = props => {
   return (
     <div style={{ margin: "32px 16px" }}>
       <div className={classes.gridWrapper}>
-        <KeyboardTimePicker
-          ampm={false}
-          autoOk
-          invalidDateMessage="Ungültige Eingabe"
-          inputVariant="outlined"
-          label="Arbeitsbeginn"
+        <TextField
           value={startOfWork}
-          onChange={handleStartOfWorkChange}
+          label="Arbeitsbeginn"
+          variant="outlined"
+          type="time"
           disabled={calculationTarget === CalculationTarget.StartOfWork}
+          onChange={handleStartOfWorkChange}
         />
-        <KeyboardTimePicker
-          ampm={false}
-          invalidDateMessage="Ungültige Eingabe"
-          inputVariant="outlined"
-          label="Arbeitsende"
+        <TextField
           value={endOfWork}
-          onChange={handleEndOfWorkChange}
+          label="Arbeitsbeginn"
+          variant="outlined"
+          type="time"
           disabled={calculationTarget === CalculationTarget.EndOfWork}
+          onChange={handleEndOfWorkChange}
         />
         <TextField
           type="number"

@@ -42,13 +42,9 @@ const getCorrectValue = (
 ) => {
   switch (calculationTarget) {
     case CalculationTarget.StartOfWork:
-      return startOfWork !== null && startOfWork.isValid()
-        ? `${startOfWork.format("HH:mm")} Uhr`
-        : "-";
+      return startOfWork !== "" ? `${startOfWork} Uhr` : "-";
     case CalculationTarget.EndOfWork:
-      return endOfWork !== null && endOfWork.isValid()
-        ? `${endOfWork.format("HH:mm")} Uhr`
-        : "-";
+      return endOfWork !== "" ? `${endOfWork} Uhr` : "-";
     case CalculationTarget.BreakTime:
       return `${breakTime} Minuten`;
     case CalculationTarget.WorkTime:

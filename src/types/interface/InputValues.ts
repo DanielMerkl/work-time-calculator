@@ -1,8 +1,6 @@
-import { Moment } from "moment";
-
 export interface InputValues {
-  startOfWork: Moment | null;
-  endOfWork: Moment | null;
+  startOfWork: string;
+  endOfWork: string;
   breakTime: number;
   workTime: number;
 }
