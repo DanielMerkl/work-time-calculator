@@ -11,7 +11,5 @@ describe("ApplicationBar", () => {
 
     fireEvent.click(getByText("Einstellungen"));
     fireEvent.click(getByText("Rechner"));
-    fireEvent.click(getByText("Einloggen"));
-    fireEvent.click(getByText("Rechner"));
   });
 });

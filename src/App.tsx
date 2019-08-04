@@ -4,7 +4,6 @@ import BottomNavigation from "./components/BottomNavigation";
 import { Redirect, Route, Switch } from "react-router-dom";
 import CalculationPage from "./pages/CalculationPage";
 import SettingsPage from "./pages/SettingsPage";
-import AuthPage from "./pages/AuthPage";
 import routes from "./utils/routes";
 import { makeStyles } from "@material-ui/styles";
 
@@ -17,7 +16,6 @@ const App: FC = () => {
       <Switch>
         <Route path={routes.calculation} exact component={CalculationPage} />
         <Route path={routes.settings} exact component={SettingsPage} />
-        <Route path={routes.auth} exact component={AuthPage} />
         <Redirect to={routes.calculation} />
       </Switch>
       <BottomNavigation />

@@ -3,15 +3,14 @@ import {
   BottomNavigation as MuiBottomNavigation,
   BottomNavigationAction
 } from "@material-ui/core";
-import { AccountCircle, Alarm, Settings } from "@material-ui/icons";
+import { Alarm, Settings } from "@material-ui/icons";
 import { useScreenSize } from "../utils/useScreenSize";
 import useRouter from "use-react-router";
 import routes from "../utils/routes";
 
 enum NavIndex {
   Calculation,
-  Settings,
-  Auth
+  Settings
 }
 
 const BottomNavigation: FC = () => {
@@ -26,8 +25,6 @@ const BottomNavigation: FC = () => {
         return NavIndex.Calculation;
       case routes.settings:
         return NavIndex.Settings;
-      case routes.auth:
-        return NavIndex.Auth;
       default:
         return NavIndex.Calculation;
     }
@@ -41,9 +38,6 @@ const BottomNavigation: FC = () => {
       case NavIndex.Settings:
         history.push(routes.settings);
         break;
-      case NavIndex.Auth:
-        history.push(routes.auth);
-        break;
     }
   };
 
@@ -55,7 +49,6 @@ const BottomNavigation: FC = () => {
     >
       <BottomNavigationAction label="Rechner" icon={<Alarm />} />
       <BottomNavigationAction label="Einstellungen" icon={<Settings />} />
-      <BottomNavigationAction label="Einloggen" icon={<AccountCircle />} />
     </MuiBottomNavigation>
   );
 };

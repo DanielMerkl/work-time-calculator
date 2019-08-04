@@ -14,6 +14,5 @@ describe("BottomNavigation", () => {
 
     fireEvent.click(getByText("Einstellungen"));
     fireEvent.click(getByText("Rechner"));
-    fireEvent.click(getByText("Einloggen"));
   });
 });
