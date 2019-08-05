@@ -36,14 +36,14 @@ const CalculationPage: FC = () => {
         inputValues={inputValues}
         calculationTarget={calculationTarget}
       />
+      <CalculationTargetSelection
+        calculationTarget={calculationTarget}
+        onCalculationTargetChange={setCalculationTarget}
+      />
       <Inputs
         inputValues={inputValues}
         calculationTarget={calculationTarget}
         onInputValuesChange={handleInputValuesChange}
-      />
-      <CalculationTargetSelection
-        calculationTarget={calculationTarget}
-        onCalculationTargetChange={setCalculationTarget}
       />
     </div>
   );
