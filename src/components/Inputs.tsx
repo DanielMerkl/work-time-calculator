@@ -46,6 +46,7 @@ const Inputs: FC<Props> = props => {
           label="Arbeitsbeginn"
           variant="outlined"
           type="time"
+          InputLabelProps={{ shrink: true }}
           disabled={calculationTarget === CalculationTarget.StartOfWork}
           onChange={handleStartOfWorkChange}
         />
@@ -54,6 +55,7 @@ const Inputs: FC<Props> = props => {
           label="Arbeitsbeginn"
           variant="outlined"
           type="time"
+          InputLabelProps={{ shrink: true }}
           disabled={calculationTarget === CalculationTarget.EndOfWork}
           onChange={handleEndOfWorkChange}
         />
@@ -61,20 +63,21 @@ const Inputs: FC<Props> = props => {
           type="number"
           label="Pausezeit"
           variant="outlined"
-          value={breakTime}
+          value={isNaN(breakTime) ? "" : breakTime}
           onChange={handleBreakTimeChange}
           disabled={calculationTarget === CalculationTarget.BreakTime}
-          error={breakTime < 0}
+          error={isNaN(breakTime) || breakTime < 0}
+          inputProps={{ min: 0 }}
         />
         <TextField
           type="number"
           label="Arbeitszeit"
           variant="outlined"
-          value={workTime.toFixed(2)}
+          value={isNaN(workTime) ? "" : workTime}
           onChange={handleWorkTimeChange}
           inputProps={{ step: 0.1 }}
           disabled={calculationTarget === CalculationTarget.WorkTime}
-          error={workTime < 0}
+          error={isNaN(workTime) || workTime < 0}
         />
       </div>
     </div>

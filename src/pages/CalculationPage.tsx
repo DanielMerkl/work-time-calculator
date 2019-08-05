@@ -19,10 +19,7 @@ const CalculationPage: FC = () => {
   );
 
   const handleInputValuesChange = (updatedInputValues: InputValues) => {
-    const { startOfWork, endOfWork } = updatedInputValues;
-    const dateInputsAreValid = !startOfWork && !endOfWork;
-
-    if (dateInputsAreValid) {
+    if (everyInputIsValid(updatedInputValues)) {
       const newCalculatedValues = calculateNewInputValues(
         updatedInputValues,
         calculationTarget
@@ -53,3 +50,15 @@ const CalculationPage: FC = () => {
 };
 
 export default CalculationPage;
+
+const everyInputIsValid = (inputValues: InputValues): boolean => {
+  const { startOfWork, endOfWork, breakTime, workTime } = inputValues;
+  return (
+    startOfWork !== "" &&
+    endOfWork !== "" &&
+    !isNaN(breakTime) &&
+    breakTime >= 0 &&
+    !isNaN(workTime) &&
+    workTime >= 0
+  );
+};

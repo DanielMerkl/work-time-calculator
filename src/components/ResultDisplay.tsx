@@ -48,6 +48,6 @@ const getCorrectValue = (
     case CalculationTarget.BreakTime:
       return `${breakTime} Minuten`;
     case CalculationTarget.WorkTime:
-      return `${workTime.toFixed(2).replace(".", ",")} Stunden`;
+      return `${workTime.toString().replace(".", ",")} Stunden`;
   }
 };

@@ -34,13 +34,16 @@ export const calculateNewInputValues = (
     case CalculationTarget.BreakTime:
       const updatedBreakTime = endOfWorkMoment
         .subtract(workTime, "hours")
-        .diff(startOfWork, "minutes");
+        .diff(startOfWorkMoment, "minutes");
       return { ...currentInputValues, breakTime: updatedBreakTime };
 
     case CalculationTarget.WorkTime:
       const updatedWorkTime = endOfWorkMoment
         .subtract(breakTime, "minutes")
-        .diff(startOfWork, "hours", true);
-      return { ...currentInputValues, workTime: updatedWorkTime };
+        .diff(startOfWorkMoment, "hours", true);
+      return {
+        ...currentInputValues,
+        workTime: Number.parseFloat(updatedWorkTime.toFixed(2))
+      };
   }
 };
