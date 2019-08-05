@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ResultDisplay from "../components/ResultDisplay";
 
 import Inputs from "../components/Inputs";
@@ -6,17 +6,23 @@ import { CalculationTarget } from "../types/enum/CalculationTarget";
 import { calculateNewInputValues } from "../utils/calculateNewInputValues";
 import { InputValues } from "../types/interface/InputValues";
 import CalculationTargetSelection from "../components/CalculationTargetSelection";
+import localStorageUtils from "../utils/localStorageUtils";
 
 const CalculationPage: FC = () => {
-  const [inputValues, setInputValues] = useState<InputValues>({
-    startOfWork: "08:00",
-    endOfWork: "16:00",
-    breakTime: 30,
-    workTime: 7.5
-  });
-  const [calculationTarget, setCalculationTarget] = useState(
-    CalculationTarget.EndOfWork
+  const [inputValues, setInputValues] = useState<InputValues>(
+    loadInitialInputValues()
   );
+  const [calculationTarget, setCalculationTarget] = useState<CalculationTarget>(
+    loadInitialCalculationTarget()
+  );
+
+  useEffect(() => {
+    localStorageUtils.saveInputValues(inputValues);
+  }, [inputValues]);
+
+  useEffect(() => {
+    localStorageUtils.saveCalculationTarget(calculationTarget);
+  }, [calculationTarget]);
 
   const handleInputValuesChange = (updatedInputValues: InputValues) => {
     if (everyInputIsValid(updatedInputValues)) {
@@ -61,4 +67,25 @@ const everyInputIsValid = (inputValues: InputValues): boolean => {
     !isNaN(workTime) &&
     workTime >= 0
   );
+};
+
+const loadInitialInputValues = (): InputValues => {
+  const savedInputValues = localStorageUtils.getInputValues();
+
+  return savedInputValues !== null
+    ? savedInputValues
+    : {
+        startOfWork: "08:00",
+        endOfWork: "16:00",
+        breakTime: 30,
+        workTime: 7.5
+      };
+};
+
+const loadInitialCalculationTarget = (): CalculationTarget => {
+  const savedCalculationTarget = localStorageUtils.getCalculationTarget();
+
+  return savedCalculationTarget !== null
+    ? savedCalculationTarget
+    : CalculationTarget.EndOfWork;
 };
