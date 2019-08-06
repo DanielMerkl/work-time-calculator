@@ -52,7 +52,7 @@ const CalculationTargetSelection: FC<Props> = React.memo(props => {
 const useStyles = makeStyles({
   gridWrapper: {
     margin: "auto",
-    maxWidth: 832,
+    maxWidth: 800,
     display: "grid",
     gridGap: 8,
     gridTemplateColumns: "repeat(4, 1fr)"
