@@ -3,6 +3,7 @@ import { CalculationTarget } from "../types/enum/CalculationTarget";
 
 const INPUT_VALUES = "inputValues";
 const CALCULATION_TARGET = "calculationTarget";
+const IS_DARK_THEME = "isDarkTheme";
 
 const saveInputValues = (inputValues: InputValues) => {
   localStorage.setItem(INPUT_VALUES, JSON.stringify(inputValues));
@@ -36,9 +37,27 @@ const getCalculationTarget = (): CalculationTarget | null => {
   }
 };
 
+const saveIsDarkTheme = (isDarkTheme: boolean) => {
+  localStorage.setItem(IS_DARK_THEME, JSON.stringify(isDarkTheme));
+};
+
+const getIsDarkTheme = (): boolean | null => {
+  const isDarkThemeString = localStorage.getItem(IS_DARK_THEME);
+  if (isDarkThemeString === null) return null;
+
+  try {
+    return JSON.parse(isDarkThemeString);
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
+
 export default {
   saveInputValues: saveInputValues,
   getInputValues: getInputValues,
   saveCalculationTarget: saveCalculationTarget,
-  getCalculationTarget: getCalculationTarget
+  getCalculationTarget: getCalculationTarget,
+  saveIsDarkTheme: saveIsDarkTheme,
+  getIsDarkTheme: getIsDarkTheme
 };
