@@ -1,11 +1,13 @@
 import React, { FC, useContext } from "react";
-import { Button, FormControlLabel, Switch } from "@material-ui/core";
+import { FormControlLabel, Switch, Fab } from "@material-ui/core";
 import { ThemeContext } from "../context/ThemeContext";
 import { makeStyles } from "@material-ui/styles";
+import { InstallationContext } from "../context/InstallationContext";
 
 const SettingsPage: FC = () => {
   const classes = useStyles();
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+  const { isInstallable, installApplication } = useContext(InstallationContext);
 
   return (
     <div>
@@ -20,9 +22,14 @@ const SettingsPage: FC = () => {
           }
           label="Dunkles Design"
         />
-        <Button color="primary" variant="contained">
+        <Fab
+          color="primary"
+          variant="extended"
+          disabled={!isInstallable}
+          onClick={installApplication}
+        >
           App installieren
-        </Button>
+        </Fab>
       </div>
     </div>
   );
