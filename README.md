@@ -4,6 +4,9 @@ ist eine plattformunabhängige und leichtgewichtige
 [Progressive Web App](https://developers.google.com/web/progressive-web-apps/), 
 mit welcher den Nutzer seine Arbeitszeiten optimal planen kann.
 
+Die Applikation kann unter folgendem Link aufgerufen werden:
+https://work-time-calculator-8b654.web.app/calculation
+
 ![](/images/AZR-Desktop-Screenshot.png)
 
 ## Verwendete Technologien
