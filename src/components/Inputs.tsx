@@ -9,7 +9,7 @@ interface Props {
   onInputValuesChange: (updatedInputValues: InputValues) => void;
 }
 
-const Inputs: FC<Props> = props => {
+const Inputs: FC<Props> = (props) => {
   const { inputValues, calculationTarget, onInputValuesChange } = props;
   const { breakTime, workTime, startOfWork, endOfWork } = inputValues;
   const classes = useStyles();
@@ -17,14 +17,14 @@ const Inputs: FC<Props> = props => {
   const handleStartOfWorkChange = (newValue: ChangeEvent<HTMLInputElement>) => {
     onInputValuesChange({
       ...inputValues,
-      startOfWork: newValue.target.value
+      startOfWork: newValue.target.value,
     });
   };
 
   const handleEndOfWorkChange = (newValue: ChangeEvent<HTMLInputElement>) => {
     onInputValuesChange({
       ...inputValues,
-      endOfWork: newValue.target.value
+      endOfWork: newValue.target.value,
     });
   };
 
@@ -90,13 +90,13 @@ const useStyles = makeStyles({
     maxWidth: 800,
     display: "grid",
     gridGap: 8,
-    gridTemplateColumns: "repeat(4, 1fr)"
+    gridTemplateColumns: "repeat(4, 1fr)",
   },
   "@media (max-width: 600px)": {
     gridWrapper: {
-      gridTemplateColumns: "1fr 1fr"
-    }
-  }
+      gridTemplateColumns: "1fr 1fr",
+    },
+  },
 });
 
 export default Inputs;

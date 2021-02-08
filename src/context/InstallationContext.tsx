@@ -1,21 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
 import { BeforeInstallPromptEvent } from "../types/interface/BeforeInstallPromptEvent";
 
-interface InstallationContext {
+interface Context {
   isInstallable: boolean;
   installApplication: () => void;
 }
 
-export const InstallationContext = React.createContext<InstallationContext>({
+export const InstallationContext = React.createContext<Context>({
   isInstallable: false,
-  installApplication: () => {}
+  installApplication: () => {},
 });
 
 const InstallationContextProvider: FC = ({ children }) => {
   const [isInstallable, setIsInstallable] = useState(false);
   const [
     defferedPrompt,
-    setDefferedPrompt
+    setDefferedPrompt,
   ] = useState<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const InstallationContextProvider: FC = ({ children }) => {
     <InstallationContext.Provider
       value={{
         isInstallable: isInstallable,
-        installApplication: installApplication
+        installApplication: installApplication,
       }}
     >
       {children}

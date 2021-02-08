@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
-import { useScreenSize } from "../utils/useScreenSize";
 import { Alarm, Settings } from "@material-ui/icons";
-import useReactRouter from "use-react-router";
-import routes from "../utils/routes";
+import { useLocation, useHistory } from "react-router-dom";
+
+import { useScreenSize } from "../utils/useScreenSize";
+import { routes } from "../utils/routes";
 
 const ApplicationBar: FC = () => {
   const { isLargeDevice } = useScreenSize();
-  const { location, history } = useReactRouter();
+  const location = useLocation();
+  const history = useHistory();
 
   return (
     <AppBar position="static">

@@ -1,21 +1,23 @@
 import React, { ChangeEvent, FC } from "react";
 import {
   BottomNavigation as MuiBottomNavigation,
-  BottomNavigationAction
+  BottomNavigationAction,
 } from "@material-ui/core";
 import { Alarm, Settings } from "@material-ui/icons";
+import { useHistory, useLocation } from "react-router-dom";
+
 import { useScreenSize } from "../utils/useScreenSize";
-import useRouter from "use-react-router";
-import routes from "../utils/routes";
+import { routes } from "../utils/routes";
 
 enum NavIndex {
   Calculation,
-  Settings
+  Settings,
 }
 
 const BottomNavigation: FC = () => {
   const { isLargeDevice } = useScreenSize();
-  const { history, location } = useRouter();
+  const location = useLocation();
+  const history = useHistory();
 
   if (isLargeDevice) return null;
 

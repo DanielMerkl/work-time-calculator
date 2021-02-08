@@ -19,7 +19,7 @@ export const calculateNewInputValues = (
         .subtract(breakTime, "minutes");
       return {
         ...currentInputValues,
-        startOfWork: updatedStartOfWork.format("HH:mm")
+        startOfWork: updatedStartOfWork.format("HH:mm"),
       };
 
     case CalculationTarget.EndOfWork:
@@ -28,7 +28,7 @@ export const calculateNewInputValues = (
         .add(workTime, "hours");
       return {
         ...currentInputValues,
-        endOfWork: updatedEndOfWork.format("HH:mm")
+        endOfWork: updatedEndOfWork.format("HH:mm"),
       };
 
     case CalculationTarget.BreakTime:
@@ -43,7 +43,7 @@ export const calculateNewInputValues = (
         .diff(startOfWorkMoment, "hours", true);
       return {
         ...currentInputValues,
-        workTime: Number.parseFloat(updatedWorkTime.toFixed(2))
+        workTime: Number.parseFloat(updatedWorkTime.toFixed(2)),
       };
   }
 };

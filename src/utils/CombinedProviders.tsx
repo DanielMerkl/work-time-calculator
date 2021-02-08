@@ -10,7 +10,7 @@ const CombinedProviders: FC = ({ children }) => (
     <ThemeContextProvider>
       <InstallationContextProvider>
         <ThemeContext.Consumer>
-          {themeContext => (
+          {(themeContext) => (
             <ThemeProvider theme={themeContext.theme}>
               <CssBaseline />
               {children}

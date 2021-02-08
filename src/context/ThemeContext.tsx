@@ -1,18 +1,18 @@
 import React, { FC, useState } from "react";
 import { Theme } from "@material-ui/core";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import localStorageUtils from "../utils/localStorageUtils";
+import { localStorageUtils } from "../utils/localStorageUtils";
 
-interface ThemeContext {
+interface Context {
   theme: Theme;
   isDarkTheme: boolean;
   toggleTheme: () => void;
 }
 
-export const ThemeContext = React.createContext<ThemeContext>({
+export const ThemeContext = React.createContext<Context>({
   theme: createMuiTheme(),
   isDarkTheme: false,
-  toggleTheme: () => {}
+  toggleTheme: () => {},
 });
 
 const ThemeContextProvider: FC = ({ children }) => {
@@ -36,7 +36,7 @@ const ThemeContextProvider: FC = ({ children }) => {
       value={{
         theme: theme,
         isDarkTheme: isDarkTheme,
-        toggleTheme: toggleTheme
+        toggleTheme: toggleTheme,
       }}
     >
       {children}
@@ -49,18 +49,18 @@ export default ThemeContextProvider;
 const defaultTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#005F6A"
-    }
-  }
+      main: "#005F6A",
+    },
+  },
 });
 
 const darkTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#30c4e4"
+      main: "#30c4e4",
     },
-    type: "dark"
-  }
+    type: "dark",
+  },
 });
 
 const loadIsDarkTheme = (): boolean => {

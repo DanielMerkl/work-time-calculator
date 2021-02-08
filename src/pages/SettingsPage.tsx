@@ -56,8 +56,8 @@ const useStyles = makeStyles({
     width: 250,
     display: "grid",
     gridGap: 16,
-    gridTemplateColumns: "1fr"
-  }
+    gridTemplateColumns: "1fr",
+  },
 });
 
 export default SettingsPage;

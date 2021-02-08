@@ -8,7 +8,7 @@ interface Props {
   onCalculationTargetChange: (newCalculationTarget: CalculationTarget) => void;
 }
 
-const CalculationTargetSelection: FC<Props> = React.memo(props => {
+const CalculationTargetSelection: FC<Props> = React.memo((props) => {
   const { calculationTarget, onCalculationTargetChange } = props;
   const classes = useStyles();
   const { BreakTime, StartOfWork, WorkTime, EndOfWork } = CalculationTarget;
@@ -55,13 +55,13 @@ const useStyles = makeStyles({
     maxWidth: 800,
     display: "grid",
     gridGap: 8,
-    gridTemplateColumns: "repeat(4, 1fr)"
+    gridTemplateColumns: "repeat(4, 1fr)",
   },
   "@media (max-width: 600px)": {
     gridWrapper: {
-      gridTemplateColumns: "1fr 1fr"
-    }
-  }
+      gridTemplateColumns: "1fr 1fr",
+    },
+  },
 });
 
 export default CalculationTargetSelection;

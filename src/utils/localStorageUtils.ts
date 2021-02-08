@@ -53,11 +53,11 @@ const getIsDarkTheme = (): boolean | null => {
   }
 };
 
-export default {
+export const localStorageUtils = {
   saveInputValues: saveInputValues,
   getInputValues: getInputValues,
   saveCalculationTarget: saveCalculationTarget,
   getCalculationTarget: getCalculationTarget,
   saveIsDarkTheme: saveIsDarkTheme,
-  getIsDarkTheme: getIsDarkTheme
+  getIsDarkTheme: getIsDarkTheme,
 };

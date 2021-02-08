@@ -6,7 +6,7 @@ import { CalculationTarget } from "../types/enum/CalculationTarget";
 import { calculateNewInputValues } from "../utils/calculateNewInputValues";
 import { InputValues } from "../types/interface/InputValues";
 import CalculationTargetSelection from "../components/CalculationTargetSelection";
-import localStorageUtils from "../utils/localStorageUtils";
+import { localStorageUtils } from "../utils/localStorageUtils";
 
 const CalculationPage: FC = () => {
   const [inputValues, setInputValues] = useState<InputValues>(
@@ -78,7 +78,7 @@ const loadInitialInputValues = (): InputValues => {
         startOfWork: "08:00",
         endOfWork: "16:00",
         breakTime: 30,
-        workTime: 7.5
+        workTime: 7.5,
       };
 };
 
